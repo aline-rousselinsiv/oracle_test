@@ -1,0 +1,47 @@
+-- 서브 쿼리 - 쿼리 아네 또다른 쿼리
+
+SELECT MAX(PAY)
+FROM PROFESSOR;
+
+-- 급여 가장 많이 받는 사람
+SELECT *
+FROM PROFESSOR
+WHERE PAY = (
+    SELECT MAX(PAY)
+    FROM PROFESSOR);
+    
+-- 급여 가장 많이 받는 사람 + 가장 작게 받는 사람    
+SELECT *
+FROM PROFESSOR
+WHERE PAY = (
+    SELECT MAX(PAY)
+    FROM PROFESSOR
+)
+OR PAY = (
+    SELECT MIN(PAY)
+    FROM PROFESSOR
+);
+
+SELECT *
+FROM PROFESSOR;
+
+SELECT DEPTNO
+FROM DEPARTMENT
+WHERE DNAME = '컴퓨터공학과';
+
+
+SELECT * 
+FROM PROFESSOR
+WHERE DEPTNO IN (
+    SELECT DEPTNO
+    FROM DEPARTMENT
+    WHERE DNAME IN ('컴퓨터공학과', '멀티미디어공학과')
+);
+
+SELECT 
+    STU_NAME,
+    (SELECT COUNT(*) FROM STUDENT)
+FROM STUDENT;
+    
+    
+    
